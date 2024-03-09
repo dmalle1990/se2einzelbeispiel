@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyApplication</string>
+    <string name="header">NetworkTest</string>
+    <string name="enter_matrNr">Gib deine Matrikelnummer ein</string>
+    <string name="insert_number_here">insert matrNr here</string>
+    <string name="serverResponse">Serverantwort</string>
+    <string name="confirmButton">ABSCHICKEN</string>
+
 </resources>
