@@ -45,15 +45,12 @@ public class MainActivity extends AppCompatActivity {
         resultCalc = findViewById(R.id.responseCalculation);
 
 
+        //send button
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 matriculationNumber = inputNumber.getText().toString();
-                //TextView serverResponse = findViewById(R.id.serverResponseTextView);
-                //serverResponse = findViewById(R.id.serverResponseTextView);
-                //serverResponse.setText("klick");
-                //serverResponseTextView == helloworld aus dem tutorium
 
                 Thread t1 = new Thread (new Runnable () {
                     public void run() {
@@ -102,9 +99,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //nächster button
 
-
+        //nächster button - calculate
         btnCalc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 matriculationNumber = inputNumber.getText().toString();
@@ -112,28 +108,18 @@ public class MainActivity extends AppCompatActivity {
                 // code ab hier
                 int alternatingSum = Math.calculate(matriculationNumber);
                 String resultFromCalc = Math.getResult(alternatingSum);
+                String addingSentence = "\nund hat den Wert " + alternatingSum + " ";
+                String concatenated = resultFromCalc + addingSentence;
 
                 //
                 //resultFromCalc müsste dem TextView resultCalc zugewiesen werden
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        resultCalc.setText(resultFromCalc);
+                        resultCalc.setText(concatenated);
                     }
 
-                    /*
-                    * runOnUiThread(new Runnable() {
-                                    public void run () {
-                                        serverResponse.setText(response);
-                                    }
-                                });*/
                 });
-
-
-
-
-
-
 
             }
         });
@@ -141,67 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    /*public void onClick(View view) {
-        if (view.getId() == R.id.button) {
-
-        }
-
-    }*/
-
-    /*
-    new Thread(new Runnable () {
-                    public void run() {
-                        try {
-                            Socket clientSocket = new Socket(serverDomain, port);
-
-                            bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                            bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-
-                            bufferedWriter.write(matriculationNumber);
-                            bufferedWriter.newLine();
-                            bufferedWriter.flush();
-
-                            String responseFromServer = bufferedReader.readLine();
-
-                            //update UI
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    serverResponse.setText(responseFromServer);
-                                }
-                            });
-
-                            bufferedWriter.close();
-                            bufferedReader.close();
-                            clientSocket.close();
-
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-
-
-                    }
-                }).start();
-    * */
-
-
-
-    //button.setOnClickListener(new View.OnClickListener()) {
-
-
-
-
-
-    //button set on click listener...
-
-    //onClick ... wäre die funktion --> google
-
-    //thread in eigene klasse
-
-    //Thread t1 = new Thread (new Client) {
-
-    //t1.start();
 
 
 

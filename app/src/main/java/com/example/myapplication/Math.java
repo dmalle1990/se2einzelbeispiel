@@ -13,9 +13,9 @@ public class Math {
 
     public static String getResult(int alternatingSum) {
         if (alternatingSum % 2 == 0) {
-            return "Die alternierende Quersumme ist gerade.";
+            return "Die alternierende Quersumme ist gerade ";
         } else {
-            return "Die alternierende Quersumme ist ungerade.";
+            return "Die alternierende Quersumme ist ungerade ";
         }
     }
 
