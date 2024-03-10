@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView serverResponse;
     private EditText inputNumber;
     private String matriculationNumber;
+    private TextView resultCalc;
     private Button btn;
+    private Button btnCalc;
     //reader and writer
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         inputNumber = findViewById(R.id.editTextNumber);
         btn = findViewById(R.id.button);
         serverResponse = findViewById(R.id.serverResponseTextView);
+        btnCalc = findViewById(R.id.calculate);
+        resultCalc = findViewById(R.id.responseCalculation);
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,17 +79,65 @@ public class MainActivity extends AppCompatActivity {
                                 bufferedReader.close();
                                 clientSocket.close();
 
-
+                            } catch (UnknownHostException e) {
+                                Log.e("err", "server not found" + e.getMessage());
                             } catch (IOException e) {
-                                throw new RuntimeException(e);
+                                Log.e("err", "I.O.error" + e.getMessage());
                             }
                         }
 
                 });
                 t1.start();
 
+
+                try {
+                    t1.join();
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // und vll Host exception hinzufügen...
+
             }
         });
+
+        //nächster button
+
+
+        btnCalc.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                matriculationNumber = inputNumber.getText().toString();
+
+                // code ab hier
+                int alternatingSum = Math.calculate(matriculationNumber);
+                String resultFromCalc = Math.getResult(alternatingSum);
+
+                //
+                //resultFromCalc müsste dem TextView resultCalc zugewiesen werden
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        resultCalc.setText(resultFromCalc);
+                    }
+
+                    /*
+                    * runOnUiThread(new Runnable() {
+                                    public void run () {
+                                        serverResponse.setText(response);
+                                    }
+                                });*/
+                });
+
+
+
+
+
+
+
+            }
+        });
+
 
 
     }

@@ -5,5 +5,7 @@
     <string name="insert_number_here">insert matrNr here</string>
     <string name="serverResponse">Serverantwort</string>
     <string name="confirmButton">ABSCHICKEN</string>
+    <string name="calculate">BERECHNEN</string>
+    <string name="responseCalculation">result of calculation will be here...</string>
 
 </resources>
